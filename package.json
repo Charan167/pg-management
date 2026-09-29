@@ -1,14 +1,18 @@
 {
   "name": "pg-management",
-  "private":true,
+  "private": true,
   "packageManager": "pnpm@11.23.0",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "typecheck": "pnpm -r run typecheck",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
 }
