@@ -5,5 +5,13 @@ export const createApp = () => {
 
   app.use(express.json());
 
+  app.get("/health", (_req, res) => {
+    res.status(200).json({ status: "ok", message: "API is available" });
+  });
+
+  app.use((_req, res) => {
+    res.status(404).json({ status: "error", message: "Not Found" });
+  });
+
   return app;
 };
