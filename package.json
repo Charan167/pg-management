@@ -6,7 +6,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "typecheck": "pnpm -r run typecheck",
+    "typecheck": "corepack pnpm -r run typecheck",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
