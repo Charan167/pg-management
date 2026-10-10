@@ -1,5 +1,6 @@
 
 import { getApiBaseUrl } from "./apiConfig";
+import { healthResponseSchema } from "@pg-management/shared";
 
 export type ApiHealthStatus = "available" | "unavailable";
 
@@ -20,16 +21,9 @@ export async function checkApiHealth(): Promise<ApiHealthStatus> {
 
     const data: unknown = await response.json();
 
-    if (
-      typeof data === "object" &&
-      data !== null &&
-      "status" in data &&
-      data.status === "ok"
-    ) {
-      return "available";
-    }
-
-    return "unavailable";
+    return healthResponseSchema.safeParse(data).success
+      ? "available"
+      : "unavailable";
   } catch {
     return "unavailable";
   }

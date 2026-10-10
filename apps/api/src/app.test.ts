@@ -1,8 +1,8 @@
 import request from "supertest";
 import { describe, expect, it } from "vitest";
+import { healthResponseSchema } from "@pg-management/shared";
 import { createApp } from "./app";
 
-// ponytail: exact toEqual locks #5 contract; Zod validation lives in ticket 09
 describe("GET /health", () => {
   it("returns 200 with stable body", async () => {
     const res = await request(createApp()).get("/health");
@@ -14,6 +14,23 @@ describe("GET /health", () => {
     const res = await request(createApp()).get("/does-not-exist");
     expect(res.status).toBe(404);
     expect(res.body).toEqual({ status: "error", message: "Not Found" });
+  });
+
+  it("validates a valid health response", () => {
+    expect(
+      healthResponseSchema.safeParse({
+        status: "ok",
+        message: "API is available",
+      }).success,
+    ).toBe(true);
+  });
+
+  it("rejects an invalid health response", () => {
+    expect(
+      healthResponseSchema.safeParse({
+        status: "error",
+      }).success,
+    ).toBe(false);
   });
 
   it("allows the admin origin and credentials", async () => {

@@ -9,6 +9,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@pg-management/shared": "workspace:*",
     "cors": "^2.8.6",
     "express": "^5.2.1"
   },
