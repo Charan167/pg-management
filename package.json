@@ -7,7 +7,7 @@
   "main": "index.js",
   "scripts": {
     "typecheck": "corepack pnpm -r run typecheck",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "corepack pnpm --filter @pg-management/api test && corepack pnpm --filter @pg-management/admin test"
   },
   "keywords": [],
   "author": "",
