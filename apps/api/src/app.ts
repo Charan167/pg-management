@@ -1,6 +1,7 @@
 
 import cors from "cors";
 import express from "express";
+import { healthResponseSchema } from "@pg-management/shared";
 
 export const createApp = () => {
   const app = express();
@@ -15,10 +16,12 @@ export const createApp = () => {
   app.use(express.json());
 
   app.get("/health", (_req, res) => {
-    res.status(200).json({
+    const healthResponse = healthResponseSchema.parse({
       status: "ok",
       message: "API is available",
     });
+
+    res.status(200).json(healthResponse);
   });
 
   app.use((_req, res) => {

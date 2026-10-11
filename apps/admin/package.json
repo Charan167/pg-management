@@ -13,6 +13,7 @@
     "@fontsource-variable/dm-sans": "^5.2.5",
     "@fontsource/barlow": "^5.2.5",
     "@mui/material": "9.4.0",
+    "@pg-management/shared": "workspace:*",
     "react": "19.3.0",
     "react-admin": "5.15.4",
     "react-dom": "19.3.0"
