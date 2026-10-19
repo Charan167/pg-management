@@ -27,8 +27,8 @@ This roadmap preserves the beginner-sized implementation plan derived from the [
 | Phase | Tickets | Status | GitHub publication | Document |
 |---|---:|---|---|---|
 | 1. Workspace | 1-10 | Published | Specification [#1](https://github.com/Charan167/pg-management/issues/1); tickets [#2-#11](https://github.com/Charan167/pg-management/issues/2) | [Phase 1](phase-01-workspace.md) |
-| 2. Database | 11-15 | Planned | Not published | [Phase 2](phase-02-database.md) |
-| 3. Authentication | 16-27 | Planned | Not published | [Phase 3](phase-03-authentication.md) |
+| 2. Database | 11-15 | Published | Tickets [#17-#21](https://github.com/Charan167/pg-management/issues/17) | [Phase 2](phase-02-database.md) |
+| 3. Authentication | 16-27 | Published | Tickets [#22-#33](https://github.com/Charan167/pg-management/issues/22) | [Phase 3](phase-03-authentication.md) |
 | 4. Organizations and Properties | 28-35 | Planned | Not published | [Phase 4](phase-04-organizations-properties.md) |
 | 5. Rooms | 36-44 | Planned | Not published | [Phase 5](phase-05-rooms.md) |
 | 6. People and Applications | 45-54 | Planned | Not published | [Phase 6](phase-06-people-applications.md) |
