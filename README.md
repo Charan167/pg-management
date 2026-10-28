@@ -93,6 +93,44 @@ docker compose ps
 Wait for `healthy` again. Ordinary `docker compose down` preserves the volume;
 the `-v` flag removes it.
 
+## Configure and Run the API
+
+Use Node.js 22.12 or newer. From the repository root, install dependencies and
+create the API's local settings file:
+
+```bash
+corepack pnpm install --frozen-lockfile
+cp apps/api/.env.example apps/api/.env
+corepack pnpm --filter @pg-management/api dev
+```
+
+Both API `dev` and `start` commands load `apps/api/.env` through Node's built-in
+environment-file support. Variables already set in your shell take precedence.
+The file is optional if you supply the required variables another way. Local
+`.env` files are ignored by Git; commit only the example with local credentials.
+Restart the API after changing settings.
+
+| Setting | Required | Meaning |
+| --- | --- | --- |
+| `DATABASE_URL` | Yes | A `postgresql://` or `postgres://` URL with a host and database name. The example matches Compose. |
+| `PORT` | No | API listening port, an integer from 1 to 65535; defaults to `3000`. |
+| `ACCESS_TOKEN_SECRET`, `REFRESH_TOKEN_SECRET` | No | Reserved authentication placeholders. Leave unset; no tokens or login behavior are implemented yet. |
+
+Startup validates settings with Zod before opening the HTTP server. For example,
+a missing or malformed database URL produces `Invalid API configuration` with
+the setting name and expected format, then exits unsuccessfully. Errors do not
+print supplied values or passwords. Server code can import the validated, typed
+`config` object from `apps/api/src/env.ts`.
+
+Configuration validation checks URL structure. It does not connect to PostgreSQL
+or check credentials; Prisma connection verification is a later task. `/health`
+and API tests remain database-free. Verify configuration and API behavior with:
+
+```bash
+corepack pnpm --filter @pg-management/api typecheck
+corepack pnpm --filter @pg-management/api test
+```
+
 ## Run the Admin Application
 
 Use Node.js 22.12 or newer. The repository pins its pnpm version in the root
